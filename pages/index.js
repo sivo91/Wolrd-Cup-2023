@@ -115,13 +115,12 @@ export default function Home() {
       
         .mantinel {
           position: relative;
-          width: 1000px;
+          max-width: 1000px;
           display: flex;
           flex-wrap: wrap;
-          overflow: hidden;
-          margin: 20px auto 0;
-          gap: 22px;
           justify-content: center;
+          gap: 22px;
+     
           
         } 
        
