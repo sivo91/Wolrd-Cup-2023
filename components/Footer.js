@@ -46,7 +46,7 @@ const shareUrl = 'https://www.charismawebdevelopment.com/'
       </div>
 
         <div className='text-center mb-5 mt-2'>
-          <Link href={'charismawebdevelopment.com'}
+          <Link href={'https://www.charismawebdevelopment.com/'}
                 style={{ textDecoration: 'none', color: 'black' }}>
            <FaExternalLinkAlt/> 
            <span className='charisma'>  CharisMa Web Development</span>
