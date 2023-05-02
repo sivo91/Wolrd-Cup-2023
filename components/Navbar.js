@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+
 
 const Navbar = () => {
   return (
@@ -12,13 +12,13 @@ const Navbar = () => {
 
      <style>{`
      .menu {
-      position: relave;
-      width: 300px;
+      position: relative;
+      
       margin: 0 auto;
       display: flex;
       justify-content: center;
- 
      }
+
      nav {
         position: fixed;
         width: 98%;
@@ -47,6 +47,15 @@ const Navbar = () => {
        .active-link {
         color: white;
        }
+
+      @media only screen and (max-width: 600px) {
+        h2 {
+          position: relative;
+          top: 5px;
+        }
+       }
+
+
       
      `}</style>
     </>

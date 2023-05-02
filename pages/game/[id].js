@@ -130,7 +130,7 @@ try {
             <div className="currentBox">
 
                 <div>
-                  <div className="imgBox">
+                  <div className="imgBox2">
                         <img src={x.img} alt={x.name} />
                   </div>
 
@@ -143,7 +143,7 @@ try {
                 </div>
 
                 <div>
-                  <div className="imgBox">
+                  <div className="imgBox2">
                         <img src={y.img} alt={y.name} />
                   </div>
 
@@ -253,7 +253,7 @@ try {
             overflow: hidden;
            }
   
-           .imgBox {
+           .imgBox2 {
             position: relative;
             width: 150px;
             height: 100px;
@@ -261,7 +261,7 @@ try {
             border: 1px solid black;
            }
 
-           .imgBox > img {
+           .imgBox2 > img {
             position: relative;
             width: 100%;
             height: 100%;
@@ -306,7 +306,6 @@ try {
           position: relative;
           width: 350px;
           margin: 0 auto;
-         
           display: flex;
           justify-content: space-around;
          }

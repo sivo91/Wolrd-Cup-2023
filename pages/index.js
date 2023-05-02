@@ -79,7 +79,7 @@ export default function Home() {
       }
 
       .section {
-        positioni: relative;
+        position: relative;
         display: flex;
         justify-content: space-evenly;
       }
@@ -89,7 +89,7 @@ export default function Home() {
         width: 100px;
         height: 67px;
         overflow: hidden;
-        background: red;
+        background: black;
         border-radius: 6px;
       }
 
@@ -98,14 +98,12 @@ export default function Home() {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        
       }
 
       .card {
         position: relative;
         width: 300px;
         height: 200px;
-        margin: 15xp 20px;
         background-image: linear-gradient(to bottom right, #2a346e, #3f5d8c);
       }
 
@@ -117,6 +115,7 @@ export default function Home() {
           position: relative;
           width: 100%;
            margin-top: 100px;
+           margin-bottom: 60px;
         }
       
         .mantinel {
@@ -127,7 +126,6 @@ export default function Home() {
           justify-content: center;
           gap: 22px;
           margin: 0 auto;
-          
         } 
        
       `}</style>
