@@ -27,58 +27,46 @@ const id = query.id
  const [y, setY] = useState({})    // OPONENT
  const [loading, setLoading] = useState(false)
  const [disable, setDisable] = useState(false)
+ const [voted, setVoted] = useState([])
+ const [total, setTotal] = useState(0)
 
-
- console.log(x.vote, y.vote)
-
-// FOR PERCENTAGE
- const svk = Number(x.vote / (x.vote + y.vote) * 100).toFixed(0) || 0
- const oponent = Number(y.vote / (x.vote + y.vote) * 100).toFixed(0) || 0 
- 
-console.log(svk, oponent)
-
-
+console.log(x.name)
 // FETCH DATA FROM MOGNO
  const fetchSlovakia = async () => {
   let x = []
-
+ 
   try {
        setLoading(true)
        const { data } = await axios('/api/getTeam/data')
        const mongo = data
-      // console.log(mongo)
 
-        if(id === 'svk_cz') {
-          x.push(mongo[0])
-          x.push(mongo[1])
-        } else if (id === 'svk_latvia') {
-          x.push(mongo[2])
-          x.push(mongo[8])
-        } else if (id === 'svk_ca') {
-          x.push(mongo[3])
-          x.push(mongo[9])
-        } else if (id === 'svk_swi') {
-          x.push(mongo[4])
-          x.push(mongo[10])
-        } else if (id === 'svk_kaz') {
-          x.push(mongo[5])
-          x.push(mongo[11])
-        } else if (id === 'svk_slo') {
-          x.push(mongo[6])
-          x.push(mongo[12])
-        } else if (id === 'svk_nor') {
-          x.push(mongo[7])
-          x.push(mongo[13])
-        }
-          
+      if(id === 'svk_cz') {
+        x.push(mongo[0])
+        x.push(mongo[1])
+      } else if (id === 'svk_latvia') {
+        x.push(mongo[2])
+        x.push(mongo[8])
+      } else if (id === 'svk_ca') {
+        x.push(mongo[3])
+        x.push(mongo[9])
+      } else if (id === 'svk_swi') {
+        x.push(mongo[4])
+        x.push(mongo[10])
+      } else if (id === 'svk_kaz') {
+        x.push(mongo[5])
+        x.push(mongo[11])
+      } else if (id === 'svk_slo') {
+        x.push(mongo[6])
+        x.push(mongo[12])
+      } else if (id === 'svk_nor') {
+        x.push(mongo[7])
+        x.push(mongo[13])
+      }
+
+       setVoted(x.map(item => item.vote))
+      
       setX(x[0])
       setY(x[1])
-
-     /*  // FOR GRAF PIE
-      for(let i = 0; i < x.length; i++) {
-        sk = x[i].vote
-        rival = x[i].vote
-        } */
 
       setLoading(false)
 
@@ -92,6 +80,16 @@ console.log(svk, oponent)
 useEffect(() => {
  fetchSlovakia()
 }, [])  
+
+
+// FOR PERCENTAGE
+ const svk = Number(voted[0] / Number(total) * 100).toFixed(1)
+ const oponent = Number(voted[1] / Number(total) * 100).toFixed(1)
+
+
+useEffect(() => {
+ setTotal(voted[0] + voted[1])
+},[voted])
 
 
 
