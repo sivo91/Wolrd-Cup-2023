@@ -115,7 +115,7 @@ try {
  
  return (
      <>
-       <h1 className='text-center mt-5 pt-5'>{x.name} vs {y.name}</h1>
+       {loading ? '' : <h1 className='text-center mt-5 pt-5'>{x.name} vs {y.name}</h1>}
        <h3 className='text-center  my-3'>Vote for your team</h3>
 
       {
