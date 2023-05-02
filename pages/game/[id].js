@@ -3,13 +3,15 @@
 
 
 
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 //import  Chart  from "react-apexcharts";
+import { Loading } from "@nextui-org/react";
+
 
 import dynamic from 'next/dynamic'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false }); 
@@ -123,7 +125,7 @@ try {
        <h3 className='text-center  my-3'>Vote for your team</h3>
 
       {
-        loading ? <p className='text-center'>...</p> :
+        loading ? <p className='text-center'><Loading type="points"/></p> :
         (
           <>
             
@@ -164,7 +166,7 @@ try {
       
 
        {   // PERCENTAGE
-        loading ? <p className='text-center'>...</p> :
+        loading ? '' :
          (
           <>
             <div className='percantaPanel'>
@@ -178,7 +180,7 @@ try {
 
      
       {   // GRAF
-        loading ? <p className='text-center'>...</p> :
+        loading ? '' :
          (
           <>
            <div className='box-percentage'>
@@ -207,7 +209,7 @@ try {
 
 
        {   // TOTAL VOTES
-        loading ? <p className='text-center'>...</p> : 
+        loading ? '' : 
         <h2 className='text-center my-5'>Total votes: 
             <span className='ms-2 border border-dark px-3 pb-1 rounded-1'>
               {x.vote + y.vote}  
