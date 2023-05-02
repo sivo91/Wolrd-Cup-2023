@@ -26,7 +26,8 @@ export default function Home() {
               
               return (
                 <>
-                 <Link href={`/game/${item.even}`} key={i}>
+                 <Link href={`/game/${item.even}`} key={i} 
+                       style={{ textDecoration: 'none', color: 'black' }}>
                   <div className="card" key={item.even}>
                   <h6 className='text-center text-light mt-2'>{item.date}</h6>
                   <h6 className='text-center text-light mb-2'>{item.day}</h6>
