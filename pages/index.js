@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 
-import { Inter } from 'next/font/google'
+
 import  data  from '@/utils/data'
 import Link from 'next/link'
 
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
 
@@ -21,36 +21,42 @@ export default function Home() {
 
       <div className="mantinel">
           {
-            data.map(( item) => (
-              <Link href={item.link ? item.link.toString() : '#'}>
-                <div className="card" key={item.even}>
-                <h6 className='text-center text-light mt-2'>{item.date}</h6>
-                 <h6 className='text-center text-light mb-2'>{item.day}</h6>
 
-                 <div className='section'>
+            data.map( (item, i) => {
+              
+              return (
+                <>
+                 <Link href={`/game/${item.even}`} key={i}>
+                  <div className="card" key={item.even}>
+                  <h6 className='text-center text-light mt-2'>{item.date}</h6>
+                  <h6 className='text-center text-light mb-2'>{item.day}</h6>
 
-                    <div className='imgBox'>
-                      <img src={item.svkImg} alt="svkImg" />
-                    </div>
+                  <div className='section'>
 
-                    <p className='vs'>vs</p>
+                      <div className='imgBox'>
+                        <img src={item.svkImg} alt="svkImg" />
+                      </div>
 
-                    <div className='imgBox'>
-                      <img src={item.teamImg} alt={item.teamImg} />
-                    </div>
+                      <p className='vCharacter'>vs</p>
 
-                 </div>
-                 
-                 <div className="taems ">
-                  <p className='text-light'>{item.svk}</p>
-                  <p className='text-light'>{item.team}</p>
-                 </div>
+                      <div className='imgBox'>
+                        <img src={item.teamImg} alt={item.teamImg} />
+                      </div>
 
-                 <h5 className='text-center text-light'>{item.place}</h5>
+                  </div>
+                  
+                  <div className="taems ">
+                    <p className='text-light'>{item.svk}</p>
+                    <p className='text-light'>{item.team}</p>
+                  </div>
 
-              </div>
-              </Link>
-            ))
+                  <h5 className='text-center text-light'>{item.place}</h5>
+
+                </div>
+                </Link>
+                </>
+              )
+            })
           }
       </div>
     </div>
@@ -58,7 +64,7 @@ export default function Home() {
 
       <style>{`
 
-      .vs {
+      .vCharacter {
         position: relative;
         top: 22px;
         color: white;
@@ -120,7 +126,7 @@ export default function Home() {
           flex-wrap: wrap;
           justify-content: center;
           gap: 22px;
-     
+          margin: 0 auto;
           
         } 
        

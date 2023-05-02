@@ -22,7 +22,7 @@ const data = [
       place:  'Arena Riga | Riga'
    },
     {
-      even:   ' svk_ca',
+      even:   'svk_ca',
       svk :   'Slovakia',
       svkImg: '/svk.png',
       team:   'Canada',
@@ -32,7 +32,7 @@ const data = [
       place:  'Nokia Arena | Tampere'
    },
    {
-      even:   ' svk_swi',
+      even:   'svk_swi',
       svk :   'Slovakia',
       svkImg: '/svk.png',
       team:    'Switzerland',

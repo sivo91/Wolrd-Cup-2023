@@ -4,8 +4,11 @@ import Team from '@/modules/Team'
 
 const handler = async (req, res) => {
   
+  //console.log(req.body)
 
   await db.connect();
+
+
   const team = await Team.findById(req.query.id);
 
   console.log(team)
