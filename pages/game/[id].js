@@ -30,7 +30,7 @@ const id = query.id
  const [voted, setVoted] = useState([])
  const [total, setTotal] = useState(0)
 
-console.log(x.name)
+
 // FETCH DATA FROM MOGNO
  const fetchSlovakia = async () => {
   let x = []
@@ -63,7 +63,7 @@ console.log(x.name)
         x.push(mongo[13])
       }
 
-       setVoted(x.map(item => item.vote))
+      setVoted(x.map(item => item.vote))
       
       setX(x[0])
       setY(x[1])

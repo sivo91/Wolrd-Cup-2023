@@ -16,8 +16,8 @@ export default function Home() {
     <>
     
     <div className="arena">
-
-      <h1 className='text-center'>Group B</h1>
+      <h2 className='text-center'>2023 IIHF World Championship</h2>
+      <h3 className='text-center mb-3'>Group B</h3>
 
 
       <div className="mantinel">
