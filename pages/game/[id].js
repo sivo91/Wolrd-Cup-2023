@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 
-
+"use strict"
 
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,25 +27,22 @@ const id = query.id
  const [y, setY] = useState({})    // OPONENT
  const [loading, setLoading] = useState(false)
  const [disable, setDisable] = useState(false)
- const [grafSVK, setGrafSVK] = useState([])
- const [grafOponent, setGrafOponent] = useState([])
 
- 
+
+ console.log(x.vote, y.vote)
 
 // FOR PERCENTAGE
  const svk = Number(x.vote / (x.vote + y.vote) * 100).toFixed(0) || 0
  const oponent = Number(y.vote / (x.vote + y.vote) * 100).toFixed(0) || 0 
  
-
+console.log(svk, oponent)
 
 
 // FETCH DATA FROM MOGNO
  const fetchSlovakia = async () => {
   let x = []
- 
 
   try {
-
        setLoading(true)
        const { data } = await axios('/api/getTeam/data')
        const mongo = data
@@ -83,9 +80,6 @@ const id = query.id
         rival = x[i].vote
         } */
 
-      setGrafSVK(sk)  
-      setGrafOponent(rival)
-
       setLoading(false)
 
     } catch (error) {
@@ -111,7 +105,9 @@ try {
     setDisable(false)
     if(x._id === id) toast.success(`${x.name} received extra vote !`)
     if(y._id === id) toast.success(`${y.name} received extra vote !`)
+
     fetchSlovakia()
+
   } catch (error) {
     console.log(error)
   }  
@@ -263,7 +259,7 @@ try {
             border: 1px solid black;
            }
 
-           .imgBox2 > img {
+           .imgBox2 img {
             position: relative;
             width: 100%;
             height: 100%;
@@ -275,7 +271,7 @@ try {
             width: 100px;
             margin:0 auto;
           }
-          .box-charisma > img {
+          .box-charisma img {
             position: relative;
             width: 100%;
             object-fit: cover;

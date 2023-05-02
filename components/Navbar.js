@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 
 
@@ -6,11 +7,47 @@ const Navbar = () => {
     <>
      <nav>
        <div className="menu">
+          <div className="finFlag">
+            <img src="/fin.png" alt="finland flag" />
+          </div>
           <h2 className='text-light pt-1'>Finland | Latvia</h2>
+          <div className="latviaFlag">
+             <img src="/lat.png" alt="latvia flag" />
+          </div>
        </div>
      </nav>
 
      <style>{`
+     
+     .finFlag, .latviaFlag {
+      position: relative;
+      width: 50px;
+      height: 33px;
+      overflow: hidden;
+      top: 10px;
+      margin-right: 15px;
+     }
+
+     .latviaFlag {
+      margin-left: 15px;
+     }
+
+     .finFlag img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+     }
+
+     .latviaFlag img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+     }
+
+
+ 
      .menu {
       position: relative;
       

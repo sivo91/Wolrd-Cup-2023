@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 
+"use strict"
 
 import  data  from '@/utils/data'
 import Link from 'next/link'
