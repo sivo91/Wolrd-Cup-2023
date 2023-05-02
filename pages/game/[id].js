@@ -33,8 +33,8 @@ const id = query.id
  
 
 // FOR PERCENTAGE
- const svk = Number(x.vote / (x.vote + y.vote) * 100).toFixed(0) 
- const oponent = Number(y.vote / (x.vote + y.vote) * 100).toFixed(0)  
+ const svk = Number(x.vote / (x.vote + y.vote) * 100).toFixed(0) || 0
+ const oponent = Number(y.vote / (x.vote + y.vote) * 100).toFixed(0) || 0 
  
 
 
@@ -211,7 +211,7 @@ try {
        {   // TOTAL VOTES
         loading ? '' : 
         <h2 className='text-center my-5'>Total votes: 
-            <span className='ms-2 border border-dark px-3 pb-1 rounded-1'>
+            <span className='ms-2 border border-dark px-3 py-1 rounded-1'>
               {x.vote + y.vote}  
             </span> 
         </h2>
@@ -290,20 +290,13 @@ try {
             margin-right: 5px;
           }
          
-          .link {
-            color: black;
-            font-size: 20px;
-          }
+          
           .blocked:hover {
             cursor: not-allowed;
           }
-         .box {
-          position: relative;
-          width: 350px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-around;
-         }
+
+         
+
          .box-percentage {
           position: relative;
           width: 350px;

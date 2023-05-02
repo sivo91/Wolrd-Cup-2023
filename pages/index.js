@@ -75,7 +75,7 @@ export default function Home() {
         position: relative;
         width: 100%;
         display: flex;
-        justify-content: space-around!important;
+        justify-content: space-evenly;
 
       }
 
@@ -94,7 +94,7 @@ export default function Home() {
         border-radius: 6px;
       }
 
-      .imgBox > img {
+      .imgBox img {
         position: relative;
         width: 100%;
         height: 100%;
