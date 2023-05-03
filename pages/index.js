@@ -7,11 +7,9 @@ import  data  from '@/utils/data1'
 import Link from 'next/link'
 
 
-
-
 export default function Home() {
 
- 
+
   return (
     <>
     
@@ -19,6 +17,7 @@ export default function Home() {
       <h2 className='text-center'>Finland | Latvia</h2>
       <h3 className='text-center mb-3'>Group B</h3>
 
+  
 
       <div className="mantinel">
           {
@@ -74,7 +73,7 @@ export default function Home() {
         position: relative;
         width: 100%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
       }
       .section {
         position: relative;
