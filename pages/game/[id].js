@@ -21,14 +21,13 @@ const Index = () => {
 
 const { query } = useRouter();
 const id = query.id
-//console.log(id)
+
 
  const [x, setX] = useState({})    // SLOVAKIA
  const [y, setY] = useState({})    // OPONENT
  const [loading, setLoading] = useState(false)
  const [disable, setDisable] = useState(false)
- const [voted, setVoted] = useState([])
- const [total, setTotal] = useState(0)
+
 
 
 // FETCH DATA FROM MOGNO
@@ -37,33 +36,38 @@ const id = query.id
  
   try {
        setLoading(true)
-       const { data } = await axios('/api/getTeam/data')
-       const mongo = data
 
-      if(id === 'svk_cz') {
-        x.push(mongo[0])
-        x.push(mongo[1])
-      } else if (id === 'svk_latvia') {
-        x.push(mongo[2])
-        x.push(mongo[8])
-      } else if (id === 'svk_ca') {
-        x.push(mongo[3])
-        x.push(mongo[9])
-      } else if (id === 'svk_swi') {
-        x.push(mongo[4])
-        x.push(mongo[10])
-      } else if (id === 'svk_kaz') {
-        x.push(mongo[5])
-        x.push(mongo[11])
-      } else if (id === 'svk_slo') {
-        x.push(mongo[6])
-        x.push(mongo[12])
-      } else if (id === 'svk_nor') {
-        x.push(mongo[7])
-        x.push(mongo[13])
-      }
+       //const { data } = await axios('/api/getTeam/data')
 
-      setVoted(x.map(item => item.vote))
+        await axios('/api/getTeam/data')
+        .then(res => {
+
+          const mongo = res.data
+
+          if(id === 'svk_cz') {
+            x.push(mongo[0])
+            x.push(mongo[1])
+          } else if (id === 'svk_latvia') {
+            x.push(mongo[2])
+            x.push(mongo[8])
+          } else if (id === 'svk_ca') {
+            x.push(mongo[3])
+            x.push(mongo[9])
+          } else if (id === 'svk_swi') {
+            x.push(mongo[4])
+            x.push(mongo[10])
+          } else if (id === 'svk_kaz') {
+            x.push(mongo[5])
+            x.push(mongo[11])
+          } else if (id === 'svk_slo') {
+            x.push(mongo[6])
+            x.push(mongo[12])
+          } else if (id === 'svk_nor') {
+            x.push(mongo[7])
+            x.push(mongo[13])
+          }
+
+        })
       
       setX(x[0])
       setY(x[1])
@@ -82,15 +86,6 @@ useEffect(() => {
 }, [])  
 
 
-// FOR PERCENTAGE
- const svk = Number(voted[0] / Number(total) * 100).toFixed(1)
- const oponent = Number(voted[1] / Number(total) * 100).toFixed(1)
-
-
-useEffect(() => {
- setTotal(voted[0] + voted[1])
-},[voted])
-
 
 
 // UPDATES
@@ -100,9 +95,9 @@ const handleUpdate = async (id) => {
 try {
     await axios.put(`/api/team/${id}/edit`, {id} )
     
-    setDisable(false)
-    if(x._id === id) toast.success(`${x.name} received extra vote !`)
-    if(y._id === id) toast.success(`${y.name} received extra vote !`)
+    setDisable(true)
+    if(x?._id === id) toast.success(`${x?.name} received extra vote !`)
+    if(y?._id === id) toast.success(`${y?.name} received extra vote !`)
 
     fetchSlovakia()
 
@@ -115,7 +110,7 @@ try {
  
  return (
      <>
-       {loading ? '' : <h1 className='text-center mt-5 pt-5'>{x.name} vs {y.name}</h1>}
+       {loading ? '' : <h1 className='text-center mt-5 pt-5'>{x?.name} vs {y?.name}</h1>}
        <h3 className='text-center  my-3'>Vote for your team</h3>
 
       {
@@ -127,27 +122,27 @@ try {
 
                 <div>
                   <div className="imgBox2">
-                        <img src={x.img} alt={x.name} />
+                        <img src={x?.img} alt={x?.name} />
                   </div>
 
                   <button 
                         className='btn btn-primary rounded-0 w-100 mt-3 shadow' 
                         disabled={disable}
-                        onClick={ () => handleUpdate(x._id)}  >
-                        {x.name}
+                        onClick={ () => handleUpdate(x?._id)}  >
+                        {x?.name}
                   </button>
                 </div>
 
                 <div>
                   <div className="imgBox2">
-                        <img src={y.img} alt={y.name} />
+                        <img src={y?.img} alt={y?.name} />
                   </div>
 
                   <button 
                         className='btn btn-primary rounded-0 w-100 mt-3 shadow' 
                         disabled={disable}
-                        onClick={ () => handleUpdate(y._id)}  >
-                        {y.name}
+                        onClick={ () => handleUpdate(y?._id)}  >
+                        {y?.name}
                   </button>
                 </div>
 
@@ -165,8 +160,17 @@ try {
           <>
             <div className='percantaPanel'>
              
-                  <h5 >{ svk }% | {x.vote} votes</h5>
-                  <h5 >{ oponent }% | {y.vote} votes</h5> 
+                <h5 >
+                  { (x?.vote / (x?.vote + y?.vote)*100).toFixed(1) }% 
+                  <span className='mx-2'>|</span>
+                  { x?.vote } votes
+                </h5>
+                <h5 >
+                  { (y?.vote / (x?.vote + y?.vote)*100).toFixed(1) }% 
+                  <span className='mx-2'>|</span>
+                  { y?.vote } votes
+                 </h5>
+                
             </div>
           </>
          )
@@ -184,14 +188,14 @@ try {
                 height={375}
 
                 // ABY SA SPRAVNE ZOBRAZOVAL GRAF MUSIA BYT HOSTIA PRVY !!!
-                series={[ y.vote, x.vote] }  // domaci , hostia              
+                series={[ y?.vote, x?.vote] }  // domaci , hostia              
 
                 options={{
                         title:{ text:"Data Visualization"
                         } , 
                        noData:{text:"Empty Data"},                        
-                       colors:[ `${y.color}` , `${x.color}`],   //  "#ff0026"               
-                       labels: [ `${y.name}` , `${x.name}` ]    // 
+                       colors:[ `${y?.color}` , `${x?.color}`],   //  "#ff0026"               
+                       labels: [ `${y?.name}` , `${x?.name}` ]    // 
                        
                  }}   
                 >           
@@ -206,7 +210,7 @@ try {
         loading ? '' : 
         <h2 className='text-center my-5'>Total votes: 
             <span className='ms-2 border border-dark px-3 py-1 rounded-1'>
-              {x.vote + y.vote}  
+              {x?.vote + y?.vote}  
             </span> 
         </h2>
        } 
@@ -222,7 +226,6 @@ try {
 
 
        <style>{`
-
            .percantaPanel {
             position: relative;
             width: 375px;
@@ -231,7 +234,6 @@ try {
             justify-content: space-between;
             padding: 0 17px;
            }
-
            .currentBox {
             position: relative;
             width : 375px;
@@ -256,7 +258,6 @@ try {
             overflow: hidden;
             border: 1px solid black;
            }
-
            .imgBox2 img {
             position: relative;
             width: 100%;
@@ -288,9 +289,7 @@ try {
           .blocked:hover {
             cursor: not-allowed;
           }
-
          
-
          .box-percentage {
           position: relative;
           width: 350px;

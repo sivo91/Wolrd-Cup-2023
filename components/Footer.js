@@ -49,7 +49,7 @@ const shareUrl = 'https://wolrd-cup-2023.vercel.app/'
           <Link href={'https://www.charismawebdevelopment.com/'}
                 style={{ textDecoration: 'none', color: 'black' }}>
            <FaExternalLinkAlt/> 
-           <span className='charisma'>  CharisMa Web Development</span>
+           <span className='charisma fs-4'>  CharisMa Web Development</span>
           </Link>
         </div>
      
@@ -58,7 +58,7 @@ const shareUrl = 'https://wolrd-cup-2023.vercel.app/'
 
       .charisma {
         position: relative;
-        top: 2px;
+        top: 5px;
         margin-left: 5px;
       }
       
